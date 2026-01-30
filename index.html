@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스터디룸 예약 시스템</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="main-layout">
+
+        <!-- 왼쪽 예약 등록 폼 -->
+        <section class="reservation-section">
+            <h1>새 예약 등록</h1>
+            <form id="reservation-form" action="insertReserve.jsp" method="POST">
+                <!-- 이름 -->
+                <div class="form-group">
+                    <label for="name" class="input-lable">이름</label>
+                    <input type="text" id="name" name="name" class="input-box" placeholder="예약자 이름" required>
+                </div>
+                <!-- 학번 -->
+                <div class="form-group">
+                    <label for="student_id" class="input-lable">학번</label>
+                    <input type="text" id="student_id" name="student_id" class="input-box" placeholder="학번 (예: 20251234)" required>
+                </div>
+                <!-- 날짜 -->
+                <div class="form-group">
+                    <label for="date" class="input-lable">날짜</label>
+                    <input type="date" id="date" name="date" class="input-box" required>
+                </div>
+                <!-- 시간대 -->
+                <div class="form-group">
+                    <label for="time_slot" class="input-lable">시간대</label>
+                    <select id="time_slot" name="time_slot" class="input-box" required>
+                        <option value="" disabled selected>--시간 선택--</option>
+                        <option value="09:00-11:00">09:00 - 11:00</option>
+                        <option value="11:00-13:00">11:00 - 13:00</option>
+                        <option value="13:00-15:00">13:00 - 15:00</option>
+                        <option value="15:00-17:00">15:00 - 17:00</option>
+                        <option value="17:00-19:00">17:00 - 19:00</option>
+                        <option value="19:00-21:00">19:00 - 21:00</option>
+                    </select>
+                </div>
+                <!-- 인원 -->
+                <div class="form-group">
+                    <label for="people" class="input-lable">인원</label>
+                    <input type="number" id="people" name="people" class="input-box" min="2" max="8" placeholder="인원 수 (2~8명)" required>
+                </div>
+                <!-- 목적 -->
+                <div class="form-group">
+                    <label for="purpose" class="input-lable">목적</label>
+                    <textarea id="purpose" name="purpose" class="input-box" placeholder="스터디 목적을 입력하세요" ></textarea>
+                </div>
+            </form>
+
+            <div class="button-group">
+                <button type="button" class="cancel-button" onclick="cancleForm()">취소</button>
+                <button type="submit" form="reservation-form" class="submit-button">예약 등록</button>
+            </div>
+        </section>
+
+        <!-- 오른쪽 예약 현황 테이블, 통계 그래프 -->
+        <section class="status-section">
+            <h1>예약 현황 목록</h1>
+            <table class="status-table" action="listReserve.jsp" method="GET">
+                <thead>
+                    <tr>
+                        <th>예약 번호</th>
+                        <th>이름</th>
+                        <th>학번</th>
+                        <th>날짜</th>
+                        <th>시간대</th>
+                        <th>인원</th>
+                        <th>목적</th>
+                    </tr>
+                </thead>
+                <tbody id="reservation-status-body">
+                    <!-- 시뮬레이션 데이터 (실제 데이터는 listReserve.jsp가 출력) -->
+                            <tr>
+                                <td>101</td>
+                                <td>김민수</td>
+                                <td>202312345</td>
+                                <td>2025-11-20</td>
+                                <td>11:00-13:00</td>
+                                <td>4</td>
+                                <td>중간고사 대비 팀 프로젝트 회의</td>
+                            </tr>
+                             <tr>
+                                <td>102</td>
+                                <td>이하나</td>
+                                <td>202456789</td>
+                                <td>2025-11-21</td>
+                                <td>09:00-11:00</td>
+                                <td>2</td>
+                                <td>자바 스터디 (알고리즘)</td>
+                            </tr>
+                             <tr>
+                                <td>103</td>
+                                <td>박지훈</td>
+                                <td>202398765</td>
+                                <td>2025-11-22</td>
+                                <td>15:00-17:00</td>
+                                <td>5</td>
+                                <td></td>
+                             </tr>
+                </tbody>
+            </table>
+
+            <h1>예약 통계</h1>
+            <div class="chart-container">
+                <canvas id="reservation-chart" class="reservation-chart"></canvas>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>

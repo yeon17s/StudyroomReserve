@@ -1,0 +1,9 @@
+CREATE TABLE reservation (
+	user_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	student_id BIGINT NOT NULL,
+	date DATE NOT NULL,
+	time_slot TIME NOT NULL,
+	people INT NOT NULL CHECK (people BETWEEN 2 AND 8),
+	purpose TEXT
+)
